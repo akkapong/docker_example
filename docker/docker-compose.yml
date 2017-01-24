@@ -1,0 +1,18 @@
+web_server:
+  build: web/
+  tty: true
+  ports:
+    - 8000:80
+  container_name: web_server
+  volumes:
+    - ../:/var/www/html
+  links:
+    - mysql_server:mysql
+
+mysql_server:
+  build: mysql/
+  ports:
+    - 33006:3306
+  container_name: mysql_server
+  environment:
+    - MYSQL_ROOT_PASSWORD=password
